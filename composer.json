@@ -1,0 +1,34 @@
+{
+    "name": "IsraelDominguez/laravel-druid",
+    "description": "Druid Package for Laravel",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "israel-dominguez-garcia",
+            "email": "israel.dominguez.garcia@gmail.com"
+        }
+    ],
+    "version": "dev-master",
+    "require": {
+        "druid/php-sdk": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/dru-id/druid-php-sdk"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Genetsis\\Druid\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Genetsis\\Druid\\DruidServiceProvider"
+            ]
+        }
+    }
+}
