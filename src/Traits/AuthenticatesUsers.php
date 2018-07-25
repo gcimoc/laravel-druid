@@ -47,7 +47,7 @@ trait AuthenticatesUsers
     protected function authorize() {
         if ($this->code != '') {
             if (!Identity::isConnected()) {
-                Identity::authorizeUser($this->code);
+                Identity::authorizeUser($this->code, $this->scope);
 
                 if ($this->scope != null) {
                     if (!Identity::checkUserComplete($this->scope)) {
