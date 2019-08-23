@@ -50,12 +50,13 @@ class DruidServiceProvider extends ServiceProvider
                 ->setClientSecret(env('DRUID_SECRET'))
                 ->setEnvironment(env('DRUID_ENVIRONMENT'))
                 ->setCallback(env('DRUID_CALLBACK'))
-                ->setEntryPoints(array(ENV('DRUID_ENTRYPOINT')))
+                ->setEntryPoints([ENV('DRUID_ENTRYPOINT')])
                 ->setCachePath(env('DRUID_CACHEPATH'))
                 ->setLogPath(env('DRUID_LOGPATH'))
-                ->setLogLevel(env('DRUID_LOGLEVEL'));
+                ->setLogLevel(env('DRUID_LOGLEVEL'))
+                ->setHosts(config('druid.hosts'));
 
-            //$options['cache'] = new ApcuCachePool();
+            $options['cache'] = new ApcuCachePool();
             $options['logger'] = app('log')->channel('stack')->getLogger();
 
             Identity::init($druid_config, true, $options);
