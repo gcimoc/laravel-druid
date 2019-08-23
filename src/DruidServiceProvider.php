@@ -70,7 +70,7 @@ class DruidServiceProvider extends ServiceProvider
     private function publishResources() {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../config/druid_config.php' => config_path('druid.php')
+                __DIR__ . '/../config/druid.php' => config_path('druid.php')
             ], 'config');
         }
     }
