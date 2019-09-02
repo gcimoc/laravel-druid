@@ -31,7 +31,7 @@ trait AuthenticatesUsers
     public function logout(Request $request) {
         event('druiduser.logout', array($request, UserApi::getUserLogged()));
 
-        Identity::synchronizeSessionWithServer();
+        //Identity::synchronizeSessionWithServer();
         Identity::logoutUser();
 
         return redirect($this->redirect, 302);
