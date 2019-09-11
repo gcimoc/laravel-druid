@@ -59,7 +59,7 @@ class DruidServiceProvider extends ServiceProvider
             $options['cache'] = new ApcuCachePool();
             $options['logger'] = app('log')->channel('stack')->getLogger();
 
-            Identity::init($druid_config, true, $options);
+            Identity::init($druid_config, false, $options);
         });
     }
 
