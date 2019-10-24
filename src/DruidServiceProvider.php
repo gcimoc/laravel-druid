@@ -54,7 +54,8 @@ class DruidServiceProvider extends ServiceProvider
                 ->setCachePath(env('DRUID_CACHEPATH'))
                 ->setLogPath(env('DRUID_LOGPATH'))
                 ->setLogLevel(env('DRUID_LOGLEVEL'))
-                ->setHosts(config('druid.hosts'));
+                ->setHosts(config('druid.hosts'))
+                ->setCookieDomain(config('druid.cookie_domain'));
 
             $options['cache'] = new ApcuCachePool();
             $options['logger'] = app('log')->channel('stack')->getLogger();

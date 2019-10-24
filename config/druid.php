@@ -5,6 +5,7 @@ return [
     'event_subscriber' => \Genetsis\Druid\Events\DruidSubscriber::class,
     'callback_controller' => \Genetsis\Druid\Controllers\ActionsController::class,
 
+    'cookie_domain' => 'domain.com',
     'hosts' => [
         'dev' => [
             'auth' => '',
