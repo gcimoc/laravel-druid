@@ -52,7 +52,7 @@ trait AuthenticatesUsers
 
                 if ($this->scope != null) {
                     if (!Identity::checkUserComplete($this->scope)) {
-                        return redirect(URLBuilder::create(DruidUrl::COMPLETE_ACCOUNT)->setScope($this->scope)->setState($this->state)->get(), 302);
+                        return redirect(URLBuilder::create(DruidUrl::COMPLETE_ACCOUNT)->setScope($this->scope)->setState(base64_encode(json_encode($this->state)))->get(), 302);
                     }
                 }
             }
