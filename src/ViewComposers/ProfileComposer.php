@@ -27,6 +27,8 @@ class ProfileComposer
     }
 
     /**
+     * Share to view an entry_point var to load default entry_point page
+     *
      * @param View $view
      * @throws \Genetsis\Druid\Exceptions\IdentityException
      */
@@ -36,7 +38,8 @@ class ProfileComposer
 
         $view->with('is_connected', Identity::isConnected());
 
-        $entry_point = Arr::get($view->getData(), 'entry_point', Identity::getOAuthConfig()->getDefaultSection());
+        $entry_point = Arr::get($view->getData(), 'entry_point', Identity::getOAuthConfig()->getDefaultSection()) ?? Identity::getOAuthConfig()->getDefaultSection();
+
         $view->with('entry_point', $entry_point);
 
         if (Identity::isConnected()) {
