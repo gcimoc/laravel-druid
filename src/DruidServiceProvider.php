@@ -9,6 +9,7 @@ use Genetsis\Druid\ViewComposers\ProfileComposer;
 use Genetsis\Identity;
 
 use Illuminate\Support\ServiceProvider;
+use JMS\Serializer\Tests\Fixtures\Log;
 
 class DruidServiceProvider extends ServiceProvider
 {
@@ -34,7 +35,6 @@ class DruidServiceProvider extends ServiceProvider
         $this->app->make('view')->composer(config('druid.composer_views'), ProfileComposer::class);
 
         \Event::subscribe(DruidSubscriber::class);
-
     }
 
     /**
@@ -57,7 +57,9 @@ class DruidServiceProvider extends ServiceProvider
                 ->setHosts(config('druid.hosts'))
                 ->setCookieDomain(config('druid.cookie_domain'));
 
-            $options['cache'] = new ApcuCachePool();
+            if (function_exists('apcu_fetch')) {
+                $options['cache'] = new ApcuCachePool();
+            }
             $options['logger'] = app('log')->channel('stack')->getLogger();
 
             Identity::init($druid_config, false, $options);

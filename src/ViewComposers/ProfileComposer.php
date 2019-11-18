@@ -43,10 +43,10 @@ class ProfileComposer
         $view->with('entry_point', $entry_point);
 
         if (Identity::isConnected()) {
-            $view->with('oid', UserApi::getUserLoggedOid());
             $view->with('edit_account_url',  URLBuilder::create(DruidUrl::EDIT)->get());
             $view->with('logout_url', route('actions.logout'));
         } else {
+            $view->with('register_url', URLBuilder::create(DruidUrl::REGISTER)->setScope($entry_point)->get());
             $view->with('login_url', URLBuilder::create(DruidUrl::LOGIN)->setScope($entry_point)->get());
         }
     }
